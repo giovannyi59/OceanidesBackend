@@ -44,9 +44,7 @@ connection.once('open', () =>{
 
 app.use('/', indexRouter);
 // app.use('/auth', authRouter);
-// app.use('/api/users', usersRouter);
-// app.use('/api/materials', materialsRouter);
-// app.use('/api/orders', ordersRouter);
+app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
