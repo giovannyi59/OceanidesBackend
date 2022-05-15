@@ -58,7 +58,7 @@ UserSchema.methods.createRefreshToken = async function(){
     const refreshToken = jwt.sign(
         { user: {id, username}}, 
         REFRESH_TOKEN_SECRET, 
-        {expiresIn: '1d'}
+        {expiresIn: '20d'}
     );
 
     try {
