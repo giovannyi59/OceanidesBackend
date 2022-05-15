@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mongoose = requiere('mongoose');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -25,6 +25,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * conexion a base de datos
+ */
+
+ mongoose.connect(process.env.CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true,  useFindAndModify: false});
+
+ const connection = mongoose.connection;
+
+connection.on('error', () => {
+  console.log('Error connecting to the service');
+});
+
+connection.once('open', () =>{
+  console.log('Conectado a la BD');
+});
 
 app.use('/', indexRouter);
 // app.use('/auth', authRouter);
