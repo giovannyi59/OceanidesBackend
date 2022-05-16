@@ -2,7 +2,7 @@ require("dotenv").config();
 const Mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Token = require("./tokenmodel");
+const Token = require("./token.model");
 const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = process.env;
 
 /* This is creating a schema for the user model. */

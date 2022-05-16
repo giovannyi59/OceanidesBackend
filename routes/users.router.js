@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../model/usermodel');
+const User = require('../model/users.model');
 const createError = require('http-errors');
 const {jsonResponse} = require('../lib/jsonresponse');
 const authMiddleware = require('../auth/auth.middleware'); 
