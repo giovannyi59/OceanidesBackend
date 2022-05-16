@@ -5,4 +5,4 @@ const tokenSchema = new mongoose.Schema({
     token: {type:String}
 });
 
-module.exports = Mongoose.model('Token', tokenSchema);
+module.exports = mongoose.model('Token', tokenSchema);

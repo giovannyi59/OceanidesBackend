@@ -9,8 +9,6 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users.router');
-var ordersRouter = require('./routes/materials.router');
-var productsRouter = require('./routes/orders.router');
 var authRouter = require('./routes/auth.router');
 
 
@@ -43,7 +41,7 @@ connection.once('open', () =>{
 });
 
 app.use('/', indexRouter);
-// app.use('/auth', authRouter);
+app.use('/auth', authRouter);
 app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler

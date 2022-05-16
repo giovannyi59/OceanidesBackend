@@ -3,6 +3,7 @@ var router = express.Router();
 const User = require('../model/users.model');
 const createError = require('http-errors');
 const {jsonResponse} = require('../lib/jsonresponse');
+
 const authMiddleware = require('../auth/auth.middleware'); 
 
 /* GET users listing. */
@@ -19,6 +20,11 @@ router.get('/',authMiddleware.checkAuth, async function(req, res, next) {
   res.json(jsonResponse(200, results));
 });
 
+/* This is a post request to the users route. It is checking if the username and password are present
+in the request body. If they are not present, it is calling the next function. If they are present,
+it is creating a new user with the username and password. It is then checking if the username
+exists. If it does, it is returning a message saying that the user exists. If it does not, it is
+saving the user and returning a message saying that the user was added correctly. */
 router.post('/', authMiddleware.checkAuth, async function(req, res, next) {
   const {username, password} = req.body;
 
@@ -43,6 +49,11 @@ router.post('/', authMiddleware.checkAuth, async function(req, res, next) {
   }
 });
 
+/* This is a get request to the users route with an iduser parameter. It is checking if the iduser is
+present in the request body. If it is not present, it is calling the next function. If it is
+present, it is finding the user with the iduser. It is then checking if the user exists. If it does,
+it is returning the user. If it does not, it is returning a message saying that the user does not
+exist. */
 router.get('/:iduser', authMiddleware.checkAuth, async function(req, res, next) {
   let results;
 
@@ -58,6 +69,11 @@ router.get('/:iduser', authMiddleware.checkAuth, async function(req, res, next) 
   res.json(jsonResponse(200, results));
 });
 
+/* This is a patch request to the users route with an iduser parameter. It is checking if the name and
+password are present in the request body. If they are not present, it is calling the next function.
+If they are present, it is finding the user with the iduser and updating the name and password. It
+is then checking if the user exists. If it does, it is returning a message saying that the user was
+updated correctly. If it does not, it is returning a message saying that the user does not exist. */
 router.patch('/:iduser', authMiddleware.checkAuth, async function(req, res, next) {
   const {name, password} = req.body;
   let query = {};
